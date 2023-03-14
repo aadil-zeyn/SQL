@@ -1,0 +1,37 @@
+create table pricedetails (
+    city varchar(20),
+    pricewithmat int,
+    pricewithoutmat int
+    primary key (city)
+);
+
+ 
+
+create table customer (
+    name varchar(20),
+        city varchar(20),
+        sqft int
+    foreign key (city) references pricedetails (city)
+);
+
+ 
+
+insert into pricedetails values ("Tvm",1600,800);
+insert into pricedetails values ("Chennai",1800,1000);
+insert into pricedetails values ("Hyderabad",2000,900);
+insert into pricedetails values ("Mumbai",2500,1200);
+insert into pricedetails values ("Kochi",1800,1200);
+
+ 
+
+
+insert into customer values ("sasi","Tvm",2);
+insert into customer values ("abu","Kochi",3);
+insert into customer values ("kodiyan","Mumbai",4);
+
+ 
+
+
+select *,pricewithmat*sqft as Total_Price_With_Material,pricewithoutmat*sqft as Total_Price_Without_Material 
+from pricedetails,customer 
+where pricedetails.city=customer.city ;
